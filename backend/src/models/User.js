@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema(
   {
@@ -48,9 +48,6 @@ const userSchema = new mongoose.Schema(
     timestamps: true, // This will add createdAt and updatedAt fields
   }
 );
-
-const User = mongoose.model("User", userSchema);
-
 //Pre Hook to hash password
 userSchema.pre("save", async function (next) {
   // Check if the password is modified or new
@@ -65,4 +62,7 @@ userSchema.pre("save", async function (next) {
     next(error);
   }
 });
+
+const User = mongoose.model("User", userSchema);
+
 export default User;

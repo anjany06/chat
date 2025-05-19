@@ -8,6 +8,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
+app.use(express.json()); // to get data(email, password) from frontend
+
 app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
